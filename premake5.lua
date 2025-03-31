@@ -13,7 +13,6 @@ project "GLFW"
         "src/**.c"
     }
 
-
     filter "system:windows"        
         systemversion "latest"
         defines { "_GLFW_WIN32",  "_CRT_SECURE_NO_WARNINGS" }
@@ -25,3 +24,13 @@ project "GLFW"
     filter "configurations:Release"
         runtime "Release"
         optimize "On"
+    filter "system:windows"
+        
+        buildoptions { "-std=c11", "-lgdi32" }
+        systemversion "latest"
+        staticruntime "On"
+
+        defines { "_GLFW_WIN32",  "_CRT_SECURE_NO_WARNING" }
+
+    filter { "system:windows", "configurations:Release" }
+        buildoptions "/MT"
